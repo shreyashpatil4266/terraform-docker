@@ -10,7 +10,7 @@ terraform {
 provider "docker" {}
 
 resource "docker_image" "nginx" {
-  name = "nginx:latest"
+  name         = "nginx:latest"
   keep_locally = false
 }
 
@@ -21,5 +21,7 @@ resource "docker_container" "nginx" {
   ports {
     internal = 80
     external = 8080
+    ip       = "0.0.0.0" # Ensures it's bound to all interfaces including localhost
   }
 }
+
